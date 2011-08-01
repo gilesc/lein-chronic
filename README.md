@@ -18,15 +18,16 @@ functions only when necessary.
 First, add lein-chronic to your :dev-dependencies, and add a :chronic
 section to your project.clj, like so:
 
-  (ns myproj
-  :dependencies [[org.clojure.clojure "1.2.1"]]
-  :dev-dependencies [[lein-chronic "1.0.0-SNAPSHOT]]
-  :chronic [{:name "taskA"
-             :schedule "*/5 * * * *"
-             :command "run -m myproj.a"}
-            {:name "taskB"
-             :schedule "* 23 ? * MON-FRI"
-             :command "uberjar"}])
+        (ns myproj
+          :dependencies [[org.clojure.clojure "1.2.1"]]
+          :dev-dependencies [[lein-chronic "1.0.0-SNAPSHOT]]
+          :chronic 
+          [{:name "taskA"
+            :schedule "*/5 * * * *"
+            :command "run -m myproj.a"}
+           {:name "taskB"
+            :schedule "* 23 ? * MON-FRI"
+            :command "uberjar"}])
 
 The :chronic entry is a vector of maps, each map describing a task to
 be performed on a regular basis.  The task name is optional, and will
@@ -38,9 +39,10 @@ manually.  To start the lein-chronic process, simply run:
 
            lein chronic
 
-In the above examples, "taskA" would run the main method of the
-myproj.a namespace every 5 minutes, while taskB would create an
-uberjar at 11PM every weekday night.
+The lein chronic process will now run until you kill it. In the above
+examples, "taskA" would run the main method of the myproj.a namespace
+every 5 minutes, while taskB would create an uberjar at 11PM every
+weekday night.
 
 ## TODO
 
